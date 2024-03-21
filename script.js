@@ -40,7 +40,26 @@ function encrypt() {
         ciphertext += String.fromCharCode(charCode);
     }
 
+    let binaryStringCipher = "";
+
+    for (let c of ciphertext) {
+        binaryStringCipher += charToBinary(c);
+    }
+
+    let res = "";
+
+    for (let i = 0; i < encodedBinaryString.length; i++) 
+        if (i%6!=0) 
+            res += encodedBinaryString[i]; 
+    
+    let res2 = "";
+    for (let i = 0; i < res.length; i++) {
+        res2 += res[i];
+        if (i%8==7) res2 += " ";
+    }
+
     document.getElementById('ciphertext').textContent = ciphertext;
+    document.getElementById('bits').textContent = res2;
 }
 
 function compare() {
