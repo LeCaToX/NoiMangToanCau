@@ -58,6 +58,8 @@ function encrypt() {
         if (i%8==7) res2 += " ";
     }
 
+    ciphertext = ciphertext.replaceAll(" ","⎵");
+
     document.getElementById('ciphertext').textContent = ciphertext;
     document.getElementById('bits').textContent = res2;
 }
