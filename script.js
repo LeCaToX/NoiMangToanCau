@@ -60,7 +60,14 @@ function encrypt() {
 
     ciphertext = ciphertext.replaceAll(" ","⎵");
 
-    document.getElementById('ciphertext').textContent = ciphertext;
+    let ciphertext2 = "";
+
+    for (let i = 0; i < ciphertext.length; i++) {
+        ciphertext2 += ciphertext[i];
+        if (i%12==11) ciphertext2 += "\n";
+    } 
+
+    document.getElementById('ciphertext').textContent = ciphertext2;
     document.getElementById('bits').textContent = res2;
 }
 
