@@ -12,14 +12,19 @@
         <input type="number" placeholder="Key" id="key" required>
         <button onclick="encrypt()">Tạo ciphertext</button>
         <pre p id="ciphertext"></pre>
-        <p id="bits"></p>
+        
     </div>
 
     <div class="container">
         <input type="text" placeholder="Ans" id="answer" required>
         <button onclick="compare()">So sánh kết quả</button>
     </div>
-    
+    <div class="container">
+        <p id="bits"></p>
+        <button onclick="tam()">8</button>
+        <button onclick="nam()">5</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
 const input = document.getElementById("number");
+var res2 = "";
+var res = "";
 
 function charToBinary(c) {
     return c.charCodeAt(0).toString(2).padStart(8, '0');
@@ -12,71 +14,86 @@ function encrypt() {
         return;
     }
     if (key<0||key>255) {
-        alert("Key phải nằm trong khoản 0-255");
+        alert("Key phải nằm trong khoảng 0-255");
         return;
     }
 
-    let binaryString = "";
-    for (let c of plaintext) {
+    var binaryString = "";
+    for (var c of plaintext) {
         binaryString += charToBinary(c);
     }
 
-    let encryptedBinaryString = "";
-    for (let i = 0; i < binaryString.length; i += 8) {
-        let bits = binaryString.substring(i, i + 8);
-        let xorBits = parseInt(bits, 2) ^ key;
+    var encryptedBinaryString = "";
+    for (var i = 0; i < binaryString.length; i += 8) {
+        var bits = binaryString.substring(i, i + 8);
+        var xorBits = parseInt(bits, 2) ^ key;
         encryptedBinaryString += xorBits.toString(2).padStart(8, '0');
     }
 
-    let encodedBinaryString = "";
-    for (let i = 0; i < encryptedBinaryString.length; i += 5) {
+    var encodedBinaryString = "";
+    for (var i = 0; i < encryptedBinaryString.length; i += 5) {
         encodedBinaryString += '1' + encryptedBinaryString.substring(i, i + 5);
     }
 
-    let ciphertext = "";
-    for (let i = 0; i < encodedBinaryString.length; i += 6) {
-        let bits = encodedBinaryString.substring(i, i + 6);
-        let charCode = parseInt(bits, 2);
+    var ciphertext = "";
+    for (var i = 0; i < encodedBinaryString.length; i += 6) {
+        var bits = encodedBinaryString.substring(i, i + 6);
+        var charCode = parseInt(bits, 2);
         ciphertext += String.fromCharCode(charCode);
     }
 
-    let binaryStringCipher = "";
+    var binaryStringCipher = "";
 
-    for (let c of ciphertext) {
+    for (var c of ciphertext) {
         binaryStringCipher += charToBinary(c);
     }
 
-    let res = "";
-
-    for (let i = 0; i < encodedBinaryString.length; i++) 
+    res = "";
+    for (var i = 0; i < encodedBinaryString.length; i++) 
         if (i%6!=0) 
             res += encodedBinaryString[i]; 
     
-    let res2 = "";
-    for (let i = 0; i < res.length; i++) {
-        res2 += res[i];
-        if (i%8==7) res2 += " ";
-    }
+    
 
     ciphertext = ciphertext.replaceAll(" ","⎵");
 
-    let ciphertext2 = "";
+    var ciphertext2 = "";
 
-    for (let i = 0; i < ciphertext.length; i++) {
+    for (var i = 0; i < ciphertext.length; i++) {
         ciphertext2 += ciphertext[i];
         if (i%12==11) ciphertext2 += "\n";
     } 
 
     document.getElementById('ciphertext').textContent = ciphertext2;
+}
+
+function nam() {
+    res2 = "";
+    for (var i = 0; i < res.length; i++) {
+        res2 += res[i];
+        if (i%5==4) res2 += " ";
+    }
     document.getElementById('bits').textContent = res2;
 }
+
+
+function tam() {
+    res2 = "";
+    for (var i = 0; i < res.length; i++) {
+        res2 += res[i];
+        if (i%8==7) res2 += " ";
+    }
+    document.getElementById('bits').textContent = res2;
+}
+
 
 function compare() {
     const plaintext = document.getElementById('plaintext').value;
     const answer = document.getElementById('answer').value;
-    if (plaintext == answer) {
-        alert("AC");
-    } else alert("WA");
+    var cnt = 0;
+    for (var i = 0; i < Math.min(35,answer.length); i++)
+        if (plaintext[i] == answer[i]) cnt++;
+    alert(cnt+"/35");
 }
 
 input.addEventListener('keyup', (e) => {

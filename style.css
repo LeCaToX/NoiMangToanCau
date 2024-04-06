@@ -29,7 +29,10 @@ button {
 p {
     margin-top: 20px;
 }
-
+#bits {
+    margin: auto;
+    max-width: 500px;
+}
 #ciphertext {
     font-size: 20px;
     background-color: bisque;
