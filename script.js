@@ -86,6 +86,16 @@ function tam() {
     document.getElementById('bits').textContent = res2;
 }
 
+function hex() {
+    res2 = "";
+    for (var i = 0; i < res.length; i++) {
+        res2 += res[i];
+        if (i%8==7) res2 += " ";
+    }
+    res2 = res2.trim();
+    document.getElementById('hex').textContent = res2.split(" ").map(x => parseInt(x, 2).toString(16).toUpperCase()).map(x => x.padStart(2,0)).join(" ");
+}
+
 
 function compare() {
     const plaintext = document.getElementById('plaintext').value;
